@@ -1,0 +1,24 @@
+version: '3'
+services:
+  prisma:
+    network_mode: host
+    image: prismagraphql/prisma:1.31
+    restart: always
+    ports:
+    - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        managementApiSecret: my-secret
+        databases:
+          default:
+            connector: postgres
+            host: 0.0.0.0
+            database: prismaTest
+            schema: public
+            user: postgres
+            password: Curramba2018
+            ssl: false
+            rawAccess: true
+            port: '5432'
+            migrations: true

@@ -1,0 +1,12 @@
+type Query {
+  hello(name: String): String!
+}
+
+type Mutation{
+  login(username: String!, password: String!, role:String!): AuthPayload!
+  switchRole(role:String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+}

@@ -1,0 +1,48 @@
+type User {
+  id: ID! @id
+  name: String
+  email: String! @unique
+  phoneNumber: String
+  posts: [Post!]!
+  comments: [Comment!]!
+  goals: [Goal!]!
+  following: [User!]! @relation(name: "Following")
+}
+
+type Notification {
+  id: ID! @id
+  content:String!
+  user:User!
+}
+
+type Post {
+  
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  title: String!
+  content: String
+  published: Boolean! @default(value: false)
+  author: User!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID! @id
+  text: String!
+  writtenBy: User!
+  post: Post
+  likes: [Like!]!
+}
+
+type Like {
+  id: ID! @id
+  comment: Comment!
+  author: User!  
+}
+
+type Goal {
+  id: ID! @id
+  description:String
+  user: User!
+}
